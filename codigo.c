@@ -39,6 +39,23 @@ for(i=0; i<100; i++){
   printf("2 ===> NÃO\n");
   printf("\nresposta:");
   scanf("%d", &resp);
+  
+  if(resp == 1){
+    system("clear");
+    contador++;
+    }
+  else if(resp == 2){
+     FILE* arquivo = fopen("registros.txt", "ab");
+     for(i=0; i<contador; i++){
+        fwrite(&T[i], sizeof(struct informacoes), 1, arquivo); 
+       }
+    fclose(arquivo);
+    break;
+    return;
+
+    }
+ 
+  } 
 
 void MenuRegistro(){
 
