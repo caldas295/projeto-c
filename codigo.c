@@ -2,6 +2,44 @@
 #include <stdlib.h>
 #include <string.h>
 
+void cadastroRegistro(){
+
+struct informacoes T[100];
+
+int resp;
+int i=0;
+int contador = 1;
+system("clear");
+printf("<========= CADASTRAR =========>\n\n");
+for(i=0; i<100; i++){
+  
+  printf("Digite o valor: ");
+  scanf("%f", &T[i].valor);
+
+  printf("\nDigite o dia: ");
+  scanf("%d", &T[i].dia);
+
+  printf("\nDigite o mes: ");
+  scanf("%d", &T[i].mes);
+
+  printf("\nDigite o ano: ");
+  scanf("%d%*c", &T[i].ano);
+
+  printf("\nDê um nome para seu registro:");
+  fgets(T[i].nome, 100, stdin);
+
+  printf("\nDigite a categoria: ");
+  scanf("%s%*c", T[i].categoria);
+
+  printf("\nAdicione uma descrição:");
+  fgets(T[i].descricao, 100, stdin);
+
+  printf("\nDeseja adicionar mais um registro ?\n");
+  printf("1 ===> SIM\n");
+  printf("2 ===> NÃO\n");
+  printf("\nresposta:");
+  scanf("%d", &resp);
+
 void MenuRegistro(){
 
 int i = 1;
