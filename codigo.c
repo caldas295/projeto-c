@@ -2,13 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-
-int main(void){
-  struct informacoes T[100];
-  menu();
-  return 0;
-}
-
 void MenuRegistro(){
 
 int i = 1;
@@ -89,3 +82,11 @@ do{
   }while(resp1 >= 0 || resp1 <=3 );
 
 }
+
+int main(void){
+  struct informacoes T[100];
+  menu();
+  return 0;
+}
+
+
