@@ -3,7 +3,26 @@
 #include <string.h>
 
 void AlteraRegistro(){
+    system("clear");
+    struct informacoes A[100];
+
+    int i = 0, j = 0;
+    char NomeProcura[100];
+    char CategoriaProcura[100];
+    int compara1, compara2;
+    int opcao;
+
+    printf("Digite a CATEGORIA do registro que deseja alterar:\n ");
+    printf("=>");
+    scanf("%s%*c", CategoriaProcura);
+
+    printf("Digite o NOME do registro que deseja alterar:\n");
+    printf("=>");
+    fgets(NomeProcura,100,stdin);
   
+    compara1 =  strcmp(CategoriaProcura, A[i].categoria);
+    compara2 =  strcmp(NomeProcura, A[i].nome);
+
    }
 
 
