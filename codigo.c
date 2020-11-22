@@ -2,6 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 
+void AlteraRegistro(){
+  
+   }
+
+
 void ListarRegistro(){
 system("clear");
 struct informacoes A[100];
