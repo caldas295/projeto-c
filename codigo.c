@@ -20,10 +20,123 @@ void AlteraRegistro(){
     printf("=>");
     fgets(NomeProcura,100,stdin);
   
-    compara1 =  strcmp(CategoriaProcura, A[i].categoria);
-    compara2 =  strcmp(NomeProcura, A[i].nome);
+    FILE* arquivo = fopen("registros.txt","rb");
 
-   }
+    while(fread(&A[i],sizeof(struct informacoes), 1,arquivo ) == 1){
+  
+        compara1 =  strcmp(CategoriaProcura, A[i].categoria);
+        compara2 =  strcmp(NomeProcura, A[i].nome);
+        
+        if(compara1 == 0 && compara2 == 0){
+            system("clear");
+            printf("<========= REGISTRO =========>\n");
+            printf("\nNome do registro: %s",A[i].nome);
+            printf("\nValor: %f", A[i].valor);
+            printf("\nData: (%d/%d/%d)", A[i].dia, A[i].mes,A[i].ano);
+            printf("\nCategoria: %s",A[i].categoria);
+            printf("\nDescrição: %s\n",A[i].descricao);
+            printf("=====================\n");
+            printf("\n<=== O que deseja alterar ===>\n\n");
+            printf("1 ===> NOME\n");
+            printf("2 ===> VALOR\n");
+            printf("3 ===> DIA\n");
+            printf("4 ===> MES\n");
+            printf("5 ===> ANO\n");
+            printf("6 ===> CATEGORIA\n");
+            printf("7 ===> DESCRIÇÃO\n");
+            printf("0 ===> VOLTAR\n");
+            scanf("%d%*c", &opcao);
+
+            if(opcao == 0){
+              return;
+            }
+
+            if(opcao == 1){
+                system("clear");
+                j = 0;
+                char NovoNome[100];
+                printf("Digite o NOVO NOME de seu registro\n");
+                fgets(NovoNome, 100, stdin);
+                strcpy(A[i].nome,NovoNome);
+                printf("\n <--- REGISTRO ALTERADO COM SUCESSO !!! --->\n\n");
+            }
+
+             else if(opcao == 2){
+                system("clear");
+                j = 0;
+                float NovoValor;
+                printf("Digite o NOVO VALOR de seu registro\n");
+                scanf("%f", &NovoValor);
+                A[i].valor = NovoValor;
+                printf("\n <--- REGISTRO ALTERADO COM SUCESSO !!! --->\n\n");
+            }
+             else if(opcao == 3){
+                system("clear");
+                j = 0;
+                int NovoDia;
+                printf("Digite o NOVO DIA de seu registro\n");
+                scanf("%d", &NovoDia);
+                A[i].dia = NovoDia;
+                printf("\n <--- REGISTRO ALTERADO COM SUCESSO !!! --->\n\n");
+            }
+
+            else if(opcao == 4){
+                system("clear");
+                j = 0;
+                int NovoMes;
+                printf("Digite o NOVO MES de seu registro\n");
+                scanf("%d", &NovoMes);
+                A[i].mes = NovoMes;
+                printf("\n <--- REGISTRO ALTERADO COM SUCESSO !!! --->\n\n");
+            }
+
+            else if(opcao == 5){
+                system("clear");
+                j = 0;
+                int NovoAno;
+                printf("Digite o NOVO ANO de seu registro\n");
+                scanf("%d", &NovoAno);
+                A[i].ano = NovoAno;
+                printf("\n <--- REGISTRO ALTERADO COM SUCESSO !!! --->\n\n");
+            }
+
+            else if(opcao == 6){
+                system("clear");
+                j = 0;
+                char NovoCategoria[100];
+                printf("Digite a NOVA CATEGORIA de seu registro\n");
+                scanf("%s", NovoCategoria);
+                strcpy(A[i].categoria,NovoCategoria);
+                printf("\n <--- REGISTRO ALTERADO COM SUCESSO !!! --->\n\n");
+            }
+
+            else if(opcao == 7){
+                system("clear");
+                j = 0;
+                char NovoDesc[100];
+                printf("Digite a NOVA DESCRIÇÃO de seu registro\n");
+                fgets(NovoDesc, 100, stdin);
+                strcpy(A[i].descricao,NovoDesc);
+                printf("\n <--- REGISTRO ALTERADO COM SUCESSO !!! --->\n\n");
+            }
+      
+      
+        }
+        i++;
+    }
+
+    fclose(arquivo);
+    
+    
+    FILE* arquivo2 = fopen("registros.txt", "wb");
+    for(j=0; j < i; j++){
+        fwrite(&A[j], sizeof(struct informacoes), 1, arquivo2); 
+    }
+    fclose(arquivo2);
+
+}
+
+ 
 
 
 void ListarRegistro(){
