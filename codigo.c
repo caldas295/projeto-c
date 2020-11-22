@@ -2,6 +2,34 @@
 #include <stdlib.h>
 #include <string.h>
 
+void ListarRegistro(){
+system("clear");
+struct informacoes A[100];
+int i;
+
+
+FILE* arquivo = fopen("registros.txt","rb");  
+
+if(arquivo==NULL){
+  printf("Arquivo não encontrado");
+}
+else{
+printf("<========= LISTA DE REGISTROS =========>\n\n");
+
+while(fread(&A[i],sizeof(struct informacoes), 1,arquivo ) == 1){
+  
+  printf("\nNome do registro: %s",A[i].nome);
+  printf("\nValor: %f", A[i].valor);
+  printf("\nData: (%d/%d/%d)", A[i].dia, A[i].mes,A[i].ano);
+  printf("\nCategoria: %s",A[i].categoria);
+  printf("\nDescrição: %s\n",A[i].descricao);
+  printf("=====================\n");
+  i++;
+    }
+
+  }
+fclose(arquivo); 
+}
 void cadastroRegistro(){
 
 struct informacoes T[100];
