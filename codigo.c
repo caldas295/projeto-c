@@ -2,6 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 
+struct informacoes{
+    float valor;
+    int dia,mes,ano;
+    char categoria[100];
+    char descricao[100];
+    char nome[100];
+};
+
 void AlteraRegistro(){
     system("clear");
     struct informacoes A[100];
