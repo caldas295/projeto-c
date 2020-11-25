@@ -10,6 +10,35 @@ struct informacoes{
     char nome[100];
 };
 
+void MenuCategoria(){
+    system("clear");
+          
+    int resp = 0;
+    
+    do{  
+    printf("\n<========= CATEGORIA =========>\n");
+    printf("\nO que deseja fazer ? ○\n");
+    printf("\n1 - Listar todas as categorias");
+    printf("\n2 - Consultar registros de cada categoria");
+    printf("\n0 - voltar\n");
+    printf("\n=>");
+    scanf("%d", &resp);
+
+    if(resp < 0 || resp >2 ){
+      printf("\nEssa opção não existe !!! \n ");
+    }
+
+     else if(resp == 0){
+     return;
+    }
+
+    else if(resp == 1){
+      ListarCategoria();
+    }
+
+    else if(resp == 2){
+      BuscaCategoria();
+    }
 
 void BuscaRegistro(){
     system("clear");
