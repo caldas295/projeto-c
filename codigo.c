@@ -10,6 +10,22 @@ struct informacoes{
     char nome[100];
 };
 
+void ListarCategoria(){
+  struct informacoes B[100];
+  int i=1;
+
+  char categorias[100];
+
+  FILE* arquivo = fopen("registros.txt","rb");
+  system("clear");
+  printf("<========= CATEGORIAS CRIADAS =========>\n\n");
+  while(fread(&B[i],sizeof(struct informacoes), 1,arquivo ) == 1){
+
+      printf("(%d) - Categoria: %s\n",i,B[i].categoria);
+      i++;   
+  }
+}
+
 void BuscaCategoria(){
     struct informacoes B[100];
     int i = 0;
