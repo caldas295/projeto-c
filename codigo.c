@@ -10,6 +10,34 @@ struct informacoes{
     char nome[100];
 };
 
+void BuscaCategoria(){
+    struct informacoes B[100];
+    int i = 0;
+    int compara = 0;
+
+    char categoriaprocura[100];
+
+    printf("Digite a categoria: \n");
+    scanf("%s", categoriaprocura);
+
+    FILE* arquivo = fopen("registros.txt","rb");
+    system("clear");
+    printf("<========= REGISTROS =========>\n\n");
+    while(fread(&B[i],sizeof(struct informacoes), 1,arquivo ) == 1){
+      
+        compara =  strcmp(categoriaprocura, B[i].categoria);
+
+        if(compara == 0){
+
+            printf("\nNome do registro: %s",B[i].nome);
+            printf("\nValor: %f", B[i].valor);
+            printf("\nData: (%d/%d/%d)", B[i].dia, B[i].mes,B[i].ano);
+            printf("\nDescrição: %s\n",B[i].descricao);
+            printf("=====================\n");  
+        }
+      }
+}
+
 void MenuCategoria(){
     system("clear");
           
