@@ -10,6 +10,42 @@ struct informacoes{
     char nome[100];
 };
 
+void MenuRelatorio(){
+    system("clear");
+    int resp;
+    
+  
+    do{  
+    printf("\n<========= RELATÓRIO =========>\n");
+    printf("\nO que deseja fazer ? \n");
+    printf("\n1 - Gerar  RELATÓRIO MENSAL");
+    printf("\n2 - Gerar RELATÓRIO ANUAL");
+    printf("\n0 - voltar para o menu\n");
+    printf("\n=>");
+    scanf("%d", &resp);
+
+    if(resp < 0 || resp >2 ){
+      printf("\nEssa opção não existe !!! \n ");
+    }
+
+     else if(resp == 0){
+        return;
+    }
+
+    else if(resp == 1){
+        RelatorioMes();
+    }
+
+    else if(resp == 2){
+        RelatorioAno();
+    }
+
+    
+
+    }while(resp >= 0 || resp <=2 );
+
+}
+
 void ListarCategoria(){
   struct informacoes B[100];
   int i=1;
