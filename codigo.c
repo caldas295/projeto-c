@@ -10,6 +10,73 @@ struct informacoes{
     char nome[100];
 };
 
+
+void RelatorioMes(){
+    system("clear");
+
+    struct informacoes B[100];
+    char CategoriaProcura[100];
+    int mesProcura;
+    int anoProcura;
+    int diaProcura;  
+    int i = 0;
+    int j = 0;
+    int compara = 0;
+
+    printf("\n<========= RELATÓRIO MENSAL =========>\n");
+    printf("\nDigite a categoria:");
+    scanf("%s", CategoriaProcura);
+    printf("Digite: \n");
+    printf("\n=>mes:");
+    scanf("%d", &mesProcura);
+    printf("\n=>ano:");
+    scanf("%d", &anoProcura);
+    
+    printf("\n");
+
+    FILE* arquivo = fopen("registros.txt","rb");
+    while(fread(&B[i],sizeof(struct informacoes), 1,arquivo ) == 1){
+          
+        compara =  strcmp(CategoriaProcura, B[i].categoria);
+        i++;
+    }
+    fclose(arquivo);
+    
+     
+    
+    
+    FILE* arquivoHTML = fopen("RelatorioMES.html","w");
+        fprintf(arquivoHTML,"<html>\n");
+        fprintf(arquivoHTML, "<body>");
+        fprintf(arquivoHTML, "<p>REGISTROS DO MES =>(%d)/<p>", mesProcura);
+
+        for(j=0; j<i; j++){
+        if(compara == 0){
+            if(B[j].mes == mesProcura && B[j].ano == anoProcura){
+
+                fprintf(arquivoHTML, "\n\n<p>Nome do registro: %s</p>", B[j].nome);
+                fprintf(arquivoHTML, "\n<p>Valor: %f</p>", B[j].valor);
+                fprintf(arquivoHTML,"\n<p>Data: (%d/%d/%d)</p>", B[j].dia, B[j].mes,B[j].ano);
+                fprintf(arquivoHTML, "\n<p>Categoria: %s</p>", B[j].categoria);
+                fprintf(arquivoHTML,"\n<p>Descrição: %s</p>",B[j].descricao);
+                fprintf(arquivoHTML,"<p>\n=====================</p>");          
+            }
+        }
+
+        //f(compara > 0  || compara < 0  ){
+        // system("clear");
+        // printf("\n Essa categoria não existe !!! \n");
+        // }
+        }
+
+      fprintf(arquivoHTML,"\n</body>");
+      fprintf(arquivoHTML,"\n</html>");
+      fclose(arquivoHTML);
+
+
+
+}
+
 void MenuRelatorio(){
     system("clear");
     int resp;
