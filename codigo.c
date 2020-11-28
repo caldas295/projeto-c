@@ -249,8 +249,9 @@ void MenuCategoria(){
 
     else if(resp == 2){
       BuscaCategoria();
+        }
     }while(resp >= 0 || resp <=2 );
-}
+  }
 
 void BuscaRegistro(){
     system("clear");
