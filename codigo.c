@@ -21,7 +21,7 @@ void RelatorioAno(){
     int diaProcura;  
     int i = 0;
     int j = 0;
-    int compara = 0;
+    
 
     printf("\n<========= RELATÓRIO ANUAL =========>\n");
     printf("\nDigite a categoria:");
@@ -35,7 +35,6 @@ void RelatorioAno(){
     FILE* arquivo = fopen("registros.txt","rb");
     while(fread(&B[i],sizeof(struct informacoes), 1,arquivo ) == 1){
           
-        compara =  strcmp(CategoriaProcura, B[i].categoria);
         i++;
     }
     fclose(arquivo);
@@ -49,7 +48,7 @@ void RelatorioAno(){
         fprintf(arquivoHTML, "<p>REGISTROS DO ANO => (%d)</p>", anoProcura);
 
         for(j=0; j<i; j++){
-        if(compara == 0){
+       
             if(B[j].ano == anoProcura){
 
                 fprintf(arquivoHTML, "\n\n<p>Nome do registro: %s</p>", B[j].nome);
@@ -58,7 +57,7 @@ void RelatorioAno(){
                 fprintf(arquivoHTML, "\n<p>Categoria: %s</p>", B[j].categoria);
                 fprintf(arquivoHTML,"\n<p>Descrição: %s</p>",B[j].descricao);
                 fprintf(arquivoHTML,"<p>\n=====================</p>");          
-            }
+            
         }
         //
         //if(compara > 0  || compara < 0  ){
@@ -117,7 +116,8 @@ void RelatorioMes(){
 
         for(j=0; j<i; j++){
         if(compara == 0){
-            if(B[j].mes == mesProcura && B[j].ano == anoProcura){
+            
+           if( mesProcura == B[j].mes && anoProcura == B[j].ano ){
 
                 fprintf(arquivoHTML, "\n\n<p>Nome do registro: %s</p>", B[j].nome);
                 fprintf(arquivoHTML, "\n<p>Valor: %f</p>", B[j].valor);
@@ -125,6 +125,7 @@ void RelatorioMes(){
                 fprintf(arquivoHTML, "\n<p>Categoria: %s</p>", B[j].categoria);
                 fprintf(arquivoHTML,"\n<p>Descrição: %s</p>",B[j].descricao);
                 fprintf(arquivoHTML,"<p>\n=====================</p>");          
+              }
             }
         }
 
@@ -132,7 +133,7 @@ void RelatorioMes(){
         // system("clear");
         // printf("\n Essa categoria não existe !!! \n");
         // }
-        }
+        
 
       fprintf(arquivoHTML,"\n</body>");
       fprintf(arquivoHTML,"\n</html>");
@@ -222,10 +223,10 @@ void BuscaCategoria(){
             printf("=====================\n");  
         }
 
-        if(compara > 0  || compara < 0  ){
-          system("clear");
-          printf("\n Essa categoria não existe !!! \n");
-          }
+        //if(compara > 0  || compara < 0  ){
+        //  system("clear");
+        //  printf("\n Essa categoria não existe !!! \n");
+        //  }
         
       }
       
@@ -631,5 +632,3 @@ int main(void){
     menu();
     return 0;
 }
-
-
