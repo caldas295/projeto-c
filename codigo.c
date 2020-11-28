@@ -15,18 +15,14 @@ void RelatorioAno(){
     system("clear");
 
     struct informacoes B[100];
-    char CategoriaProcura[100];
-    int mesProcura;
     int anoProcura;
-    int diaProcura;  
     int i = 0;
     int j = 0;
     
 
     printf("\n<========= RELATÓRIO ANUAL =========>\n");
-    printf("\nDigite a categoria:");
-    scanf("%s", CategoriaProcura);
-    printf("Digite:\n");
+    
+    printf("Digite o ano:\n");
     printf("\n=>ano:");
     scanf("%d", &anoProcura);
     
