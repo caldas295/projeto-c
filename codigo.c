@@ -111,8 +111,9 @@ void RelatorioMes(){
     
     FILE* arquivoHTML = fopen("RelatorioMES.html","w");
         fprintf(arquivoHTML,"<html>\n");
-        fprintf(arquivoHTML, "<body>");
-        fprintf(arquivoHTML, "<p>REGISTROS DO MES =>(%d)/<p>", mesProcura);
+        fprintf(arquivoHTML, "<body>\n");
+        fprintf(arquivoHTML, "<p>REGISTROS DO MES =>(%d)</p>\n", mesProcura);
+        fprintf(arquivoHTML, "<p>CATEGORIA =>(%s)</p>\n",CategoriaProcura);
 
         if(aux == 10){
            for(j=0; j<i; j++){
