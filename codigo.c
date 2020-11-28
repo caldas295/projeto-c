@@ -76,12 +76,13 @@ void RelatorioMes(){
 
     struct informacoes B[100];
     char CategoriaProcura[100];
-    int mesProcura;
-    int anoProcura;
-    int diaProcura;  
+    int mesProcura = 0;
+    int anoProcura = 0;
+    
     int i = 0;
     int j = 0;
     int compara = 0;
+    int aux = 0;
 
     printf("\n<========= RELATÓRIO MENSAL =========>\n");
     printf("\nDigite a categoria:");
@@ -98,6 +99,9 @@ void RelatorioMes(){
     while(fread(&B[i],sizeof(struct informacoes), 1,arquivo ) == 1){
           
         compara =  strcmp(CategoriaProcura, B[i].categoria);
+        if(compara == 0){
+            aux = 10;
+          }
         i++;
     }
     fclose(arquivo);
@@ -110,25 +114,24 @@ void RelatorioMes(){
         fprintf(arquivoHTML, "<body>");
         fprintf(arquivoHTML, "<p>REGISTROS DO MES =>(%d)/<p>", mesProcura);
 
-        for(j=0; j<i; j++){
-        if(compara == 0){
-            
-           if( mesProcura == B[j].mes && anoProcura == B[j].ano ){
+        if(aux == 10){
+           for(j=0; j<i; j++){
+        
+              if( mesProcura == B[j].mes && anoProcura == B[j].ano ){
 
-                fprintf(arquivoHTML, "\n\n<p>Nome do registro: %s</p>", B[j].nome);
-                fprintf(arquivoHTML, "\n<p>Valor: %f</p>", B[j].valor);
-                fprintf(arquivoHTML,"\n<p>Data: (%d/%d/%d)</p>", B[j].dia, B[j].mes,B[j].ano);
-                fprintf(arquivoHTML, "\n<p>Categoria: %s</p>", B[j].categoria);
-                fprintf(arquivoHTML,"\n<p>Descrição: %s</p>",B[j].descricao);
-                fprintf(arquivoHTML,"<p>\n=====================</p>");          
+                    fprintf(arquivoHTML, "\n\n<p>Nome do registro: %s</p>", B   [j].nome);
+                    fprintf(arquivoHTML, "\n<p>Valor: %f</p>", B[j].valor);
+                    fprintf(arquivoHTML,"\n<p>Data: (%d/%d/%d)</p>", B[j]   .dia, B[j].mes,B[j].ano);
+                    fprintf(arquivoHTML, "\n<p>Categoria: %s</p>", B[j]   .categoria);
+                    fprintf(arquivoHTML,"\n<p>Descrição: %s</p>",B[j]   .descricao);
+                    fprintf(arquivoHTML,"<p>\n=====================</p>");          
               }
             }
         }
 
-        //f(compara > 0  || compara < 0  ){
-        // system("clear");
-        // printf("\n Essa categoria não existe !!! \n");
-        // }
+        else{
+            printf("\n Essa categoria não existe !!! \n");
+         }
         
 
       fprintf(arquivoHTML,"\n</body>");
@@ -138,6 +141,7 @@ void RelatorioMes(){
 
 
 }
+
 
 void MenuRelatorio(){
     system("clear");
