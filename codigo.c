@@ -497,7 +497,7 @@ void cadastroRegistro(){
     int contador = 1;
     system("clear");
     printf("<========= CADASTRAR =========>\n\n");
-    for(i=0; i<100; i++){
+    for(i=0; i<1000; i++){
   
         printf("Digite o valor: ");
         scanf("%f", &T[i].valor);
