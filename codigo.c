@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+
 struct informacoes{
     float valor;
     int dia,mes,ano;
@@ -9,7 +10,6 @@ struct informacoes{
     char descricao[100];
     char nome[100];
 };
-
 
 void RelatorioAno(){
     system("clear");
@@ -73,6 +73,7 @@ fclose(arquivoHTML);
 
 
 }
+
 
 
 void RelatorioMes(){
@@ -177,24 +178,26 @@ void MenuRelatorio(){
 
 }
 
+
 void ListarCategoria(){
-  struct informacoes B[100];
-  int i=1;
+    struct informacoes B[1000];
+    int i=1;
 
-  char categorias[100];
+    char categorias[100];
 
-  FILE* arquivo = fopen("registros.txt","rb");
-  system("clear");
-  printf("<========= CATEGORIAS CRIADAS =========>\n\n");
-  while(fread(&B[i],sizeof(struct informacoes), 1,arquivo ) == 1){
+    FILE* arquivo = fopen("registros.txt","rb");
+    system("clear");
+    printf("<========= CATEGORIAS CRIADAS =========>\n\n");
+    while(fread(&B[i],sizeof(struct informacoes), 1,arquivo ) == 1){
 
-      printf("(%d) - Categoria: %s\n",i,B[i].categoria);
-      i++;   
+        printf("(%d) - Categoria: %s\n",i,B[i].categoria);
+        i++;   
   }
-}
 
+
+}
 void BuscaCategoria(){
-    struct informacoes B[100];
+    struct informacoes B[1000];
     int i = 0;
     int compara = 0;
 
@@ -218,7 +221,14 @@ void BuscaCategoria(){
             printf("\nDescrição: %s\n",B[i].descricao);
             printf("=====================\n");  
         }
+
+        if(compara > 0  || compara < 0  ){
+          system("clear");
+          printf("\n Essa categoria não existe !!! \n");
+          }
+        
       }
+      
 }
 
 void MenuCategoria(){
@@ -228,10 +238,10 @@ void MenuCategoria(){
     
     do{  
     printf("\n<========= CATEGORIA =========>\n");
-    printf("\nO que deseja fazer ? ○\n");
+    printf("\nO que deseja fazer ? \n");
     printf("\n1 - Listar todas as categorias");
     printf("\n2 - Consultar registros de cada categoria");
-    printf("\n0 - voltar\n");
+    printf("\n0 - voltar para o menu\n");
     printf("\n=>");
     scanf("%d", &resp);
 
@@ -249,13 +259,18 @@ void MenuCategoria(){
 
     else if(resp == 2){
       BuscaCategoria();
-        }
+    }
+
+
+
     }while(resp >= 0 || resp <=2 );
-  }
+}
+
+
 
 void BuscaRegistro(){
     system("clear");
-    struct informacoes B[100];
+    struct informacoes B[1000];
     char CategoriaProcura[100];
     char NomeProcura[100];
     int compara1, compara2;
@@ -289,17 +304,17 @@ void BuscaRegistro(){
             printf("\nDescrição: %s\n",B[i].descricao);
             printf("=====================\n");
     }
+
     
+  
   }
-  if(compara1 > 0 || compara2 > 0 || compara1 < 0 || compara2 < 0 ){
-    printf("\n Registro não encontado !!! \n");
-  }
+  
 fclose(arquivo);
 }  
 
 void AlteraRegistro(){
     system("clear");
-    struct informacoes A[100];
+    struct informacoes A[1000];
 
     int i = 0, j = 0;
     char NomeProcura[100];
@@ -444,7 +459,7 @@ void AlteraRegistro(){
 
 void ListarRegistro(){
     system("clear");
-    struct informacoes A[100];
+    struct informacoes A[1000];
     int i;
 
 
@@ -474,7 +489,7 @@ void ListarRegistro(){
 
 void cadastroRegistro(){
 
-    struct informacoes T[100];
+    struct informacoes T[1000];
 
     int resp;
     int i=0;
@@ -602,15 +617,17 @@ void menu(){
 
         else if(resp1 == 2){
             MenuCategoria();
-          }  
+          }
 
+        else if(resp1 == 3){
+            MenuRelatorio();
+          }  
 
     }while(resp1 >= 0 || resp1 <=3 );
 
     }
 
 int main(void){
-    struct informacoes T[100];
     menu();
     return 0;
 }
